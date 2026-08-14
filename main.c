@@ -33,13 +33,12 @@ static void	free_all(t_game *game)
 	free(game->mlx);
 }
 
-static int	close_win(t_game *game)
+static void	close_win(t_game *game)
 {
 	mlx_loop_end(game->mlx);
 	mlx_destroy_window(game->mlx, game->win);
 	free_all(game);
 	exit(0);
-	return (0);
 }
 
 static int	key_press(int keycode, t_game *game)
