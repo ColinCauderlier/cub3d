@@ -90,7 +90,7 @@ static void	calculate_step_and_sidedist(const t_player *plyr, t_raycast *ray)
 	perpWallDist is used to calculate the length of the ray 
 	from the camera plane to the wall.
 */
-void	raycast(t_game *game, t_player *plyr, t_raycast *ray)
+void	raycast(const t_game *game, const t_player *plyr, t_raycast *ray)
 {
 	ray->hit = FALSE;
 	if (ray->ray_dir[X] == 0)

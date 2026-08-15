@@ -26,7 +26,7 @@
 # define HEIGHT 256
 
 //FOV and PLAYER_ROTATION are in degrees
-# define FOV 90
+# define FOV 120
 # define PLAYER_SPEED 0.1
 # define PLAYER_ROTATION 10
 
@@ -152,7 +152,7 @@ double			to_rad(double alpha);
 void			rendering(t_game *game);
 
 //raycasting.c
-void			raycast(t_game *game, t_player *plyr, t_raycast *ray);
+void			raycast(const t_game *game, const t_player *plyr, t_raycast *ray);
 
 //put_pixel.c
 void			put_pixel(t_data_image *data, int x, int y, int color);
