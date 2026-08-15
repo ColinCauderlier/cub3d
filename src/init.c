@@ -25,10 +25,10 @@ static void	init_mlx(t_game *game)
 
 static void	init_textures(t_game *game)
 {
-	game->tex.tex_names[0] = "./textures/antoine.xpm";
-	game->tex.tex_names[1] = "./textures/antoine_meme.xpm";
-	game->tex.tex_names[2] = "./textures/noah.xpm";
-	game->tex.tex_names[3] = "./textures/julien.xpm";
+	game->tex.tex_names[0] = "../textures/antoine.xpm";
+	game->tex.tex_names[1] = "../textures/antoine_meme.xpm";
+	game->tex.tex_names[2] = "../textures/noah.xpm";
+	game->tex.tex_names[3] = "../textures/julien.xpm";
 }
 
 /*

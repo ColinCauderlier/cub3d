@@ -38,7 +38,6 @@ static int	close_win(t_game *game)
 	mlx_destroy_window(game->mlx, game->win);
 	free_all(game);
 	exit(0);
-	return (0);
 }
 
 static int	key_press(int keycode, t_game *game)

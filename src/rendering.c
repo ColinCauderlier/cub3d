@@ -12,7 +12,7 @@
 
 #include "../includes/cub.h"
 
-static int	get_texture_index(t_raycast *ray)
+static int	get_texture_index(const t_raycast *ray)
 {
 	if (ray->side == Y && ray->ray_dir[Y] > 0)
 		return (0);
@@ -25,7 +25,7 @@ static int	get_texture_index(t_raycast *ray)
 	return (0);
 }
 
-static void	init_column(t_game *game, t_raycast *ray)
+static void	init_column(t_game *game, const t_raycast *ray)
 {
 	double			wall_x;
 
@@ -46,7 +46,7 @@ static void	init_column(t_game *game, t_raycast *ray)
 		game->tex.tex_x = game->tex.current_tex.width - game->tex.tex_x - 1;
 }
 
-static void	draw_column(t_game *game, t_raycast *ray, t_tex *tex, int column)
+static void	draw_column(t_game *game, const t_raycast *ray, t_tex *tex, int column)
 {
 	int				column_pixel;
 	int				color;

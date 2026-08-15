@@ -53,7 +53,7 @@ double	to_deg(double alpha)
 /*
     Convert a RGBA array into hexadecimal
 */
-unsigned int	color_to_hex(int color[4])
+unsigned int	color_to_hex(const int color[4])
 {
 	unsigned int	result;
 

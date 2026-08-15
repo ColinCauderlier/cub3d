@@ -31,7 +31,7 @@ static void	get_wall_size(t_raycast *ray)
 }
 
 //DDA: Digital Differential Analysis algorithm
-static void	dda(t_game *game, t_raycast *ray)
+static void	dda(const t_game *game, t_raycast *ray)
 {
 	while (ray->hit == FALSE)
 	{
@@ -52,7 +52,7 @@ static void	dda(t_game *game, t_raycast *ray)
 	}
 }
 
-static void	calculate_step_and_sidedist(t_player *plyr, t_raycast *ray)
+static void	calculate_step_and_sidedist(const t_player *plyr, t_raycast *ray)
 {
 	if (ray->ray_dir[X] < 0)
 	{
