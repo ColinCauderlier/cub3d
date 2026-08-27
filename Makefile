@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+         #
+#    By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/08 14:23:37 by ccauderl          #+#    #+#              #
-#    Updated: 2026/08/08 15:02:54 by ccauderl         ###   ########.fr        #
+#    Updated: 2026/08/20 18:00:10 by lucinguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,16 @@ SRCS_DIR	:= src
 OBJS_DIR	:= objs/cub3D
 LIBFT_LIB	:= $(LIBFT_DIR)/libft.a
 
-SRCS		:= main.c init.c utils.c rendering.c put_pixel.c player_movement.c player_rotation.c textures.c raycasting.c
+SRCS		:= main.c \
+			init.c \
+			utils.c \
+			movement/player_movement.c \
+			movement/player_rotation.c \
+			parsing/parsing.c \
+			render/textures.c \
+			render/raycasting.c \
+			render/rendering.c \
+			render/put_pixel.c
 
 SRCS_FILES	:= $(addprefix $(SRCS_DIR)/, $(SRCS))
 OBJS		:= $(SRCS_FILES:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)

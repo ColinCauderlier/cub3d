@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 14:49:17 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/13 19:40:11 by ccauderl         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:15:04 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static void	init_mlx(t_game *game)
 
 static void	init_textures(t_game *game)
 {
-	game->tex.tex_names[0] = "../textures/antoine.xpm";
-	game->tex.tex_names[1] = "../textures/antoine_meme.xpm";
-	game->tex.tex_names[2] = "../textures/noah.xpm";
-	game->tex.tex_names[3] = "../textures/julien.xpm";
+	game->tex.tex_names[0] = "textures/antoine.xpm";
+	game->tex.tex_names[1] = "textures/antoine_meme.xpm";
+	game->tex.tex_names[2] = "textures/noah.xpm";
+	game->tex.tex_names[3] = "textures/julien.xpm";
 }
 
 /*

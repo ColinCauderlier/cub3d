@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 18:44:21 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/13 19:39:09 by ccauderl         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:49:11 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 /*
-	Destroy texture images from index 0 to i. 
+	Destroy texture images from index 0 to i.
 */
 static void	destroy_previous_images(t_game *game, int i)
 {
@@ -29,7 +29,7 @@ static void	destroy_previous_images(t_game *game, int i)
 
 /*
     Create the texture images.
-    If an error occurs, destroy every texture images 
+    If an error occurs, destroy every texture images
     and return the opposite of the name index (from -4 to -1).
 */
 int	open_textures(t_game *game, t_tex *tex)

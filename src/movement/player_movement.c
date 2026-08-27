@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 18:40:21 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/13 18:43:40 by ccauderl         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:48:09 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 void	create_new_image(t_game *game)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 13:58:44 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/14 17:47:51 by ccauderl         ###   ########.fr       */
+/*   Updated: 2026/08/24 20:36:13 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # define SIZE_WIN_X 1600
 # define SIZE_WIN_Y 900
 
-//texture sizes
-# define WIDTH  256
+// texture sizes
+# define WIDTH 256
 # define HEIGHT 256
 
-//FOV and PLAYER_ROTATION are in degrees
+// FOV and PLAYER_ROTATION are in degrees
 # define FOV 120
 # define PLAYER_SPEED 0.1
 # define PLAYER_ROTATION 10
@@ -59,12 +59,12 @@
 
 //-------LIBRARIES-------//
 
-# include <stdio.h>
-# include <math.h>
-# include <fcntl.h>
-# include <errno.h>
-# include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
+# include "../mlx_linux/mlx.h"
+# include <errno.h>
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
 
 //-------STRUCTURES-------//
 
@@ -73,19 +73,19 @@ typedef enum s_direction
 	N,
 	S,
 	W,
-	O,
-}	t_dir;
+	E,
+}					t_dir;
 
 typedef struct s_data_image
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}	t_data_image;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
+}					t_data_image;
 
 typedef struct t_texture
 {
@@ -96,32 +96,44 @@ typedef struct t_texture
 	int				tex_x;
 	int				tex_y;
 	t_data_image	current_tex;
-}	t_tex;
+}					t_tex;
 
 typedef struct s_player
 {
-	double	pos[2];
-	double	dir[2];
-	double	plan[2];
-}	t_player;
+	double			pos[2];
+	double			dir[2];
+	double			plan[2];
+}					t_player;
 
 /*
 	map[] is the player position
 */
 typedef struct s_raycasting
 {
-	double	screen[2];
-	double	ray_dir[2];
-	int		map[2];
-	double	side_dist[2];
-	double	delta_dist[2];
-	int		step[2];
-	double	wall_dist;
-	int		hit;
-	int		side;
-	int		wall_height;
-	int		draw_wall[2];
-}	t_raycast;
+	double			screen[2];
+	double			ray_dir[2];
+	int				map[2];
+	double			side_dist[2];
+	double			delta_dist[2];
+	int				step[2];
+	double			wall_dist;
+	int				hit;
+	int				side;
+	int				wall_height;
+	int				draw_wall[2];
+}					t_raycast;
+
+typedef struct s_map
+{
+	int				spawn_number;
+	char			*NO_path;
+	char			*SO_path;
+	char			*WE_path;
+	char			*EA_path;
+	int				floor_colour[3];
+	int				ceiling_colour[3];
+	char			**map_plan;
+}					t_map;
 
 typedef struct s_game
 {
@@ -131,42 +143,43 @@ typedef struct s_game
 	t_player		player;
 	t_raycast		ray;
 	t_tex			tex;
-	int				(*map)[24];
-}	t_game;
+	t_map			map;
+}					t_game;
 
 //-------FUNCTIONS-------//
 
-//init.c
-void			init(t_game *game);
+// init.c
+void				init(t_game *game);
 
-//textures.c
-int				open_textures(t_game *game, t_tex *tex);
-void			close_textures(t_game *game);
+// textures.c
+int					open_textures(t_game *game, t_tex *tex);
+void				close_textures(t_game *game);
 
-//utils.c
-void			rotate(double src[2], double dest[2], double alpha);
-double			to_deg(double alpha);
-double			to_rad(double alpha);
+// utils.c
+void				rotate(double src[2], double dest[2], double alpha);
+double				to_deg(double alpha);
+double				to_rad(double alpha);
 
-//rendering.c
-void			rendering(t_game *game);
+// rendering.c
+void				rendering(t_game *game);
 
-//raycasting.c
-void			raycast(const t_game *game, const t_player *plyr, t_raycast *ray);
+// raycasting.c
+void				raycast(const t_game *game, const t_player *plyr,
+						t_raycast *ray);
 
-//put_pixel.c
-void			put_pixel(t_data_image *data, int x, int y, int color);
-unsigned int	read_pixel(t_data_image *data, int x, int y);
+// put_pixel.c
+void				put_pixel(t_data_image *data, int x, int y, int color);
+unsigned int		read_pixel(t_data_image *data, int x, int y);
 
-//player_movement.c
-void			create_new_image(t_game *game);
-void			move_forward(t_game *game);
-void			move_backward(t_game *game);
-void			move_left(t_game *game);
-void			move_right(t_game *game);
+// player_movement.c
+void				create_new_image(t_game *game);
+void				move_forward(t_game *game);
+void				move_backward(t_game *game);
+void				move_left(t_game *game);
+void				move_right(t_game *game);
 
-//player_rotation.c
-void			rotate_left(t_game *game);
-void			rotate_right(t_game *game);
+// player_rotation.c
+void				rotate_left(t_game *game);
+void				rotate_right(t_game *game);
 
 #endif

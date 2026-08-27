@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 17:50:29 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/14 17:48:22 by ccauderl         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:49:04 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 static int	get_texture_index(const t_raycast *ray)
 {
@@ -73,7 +73,7 @@ static void	draw_column(t_game *game, const t_raycast *ray, t_tex *tex, int colu
 }
 
 /*
-    screen[X] ∈ [-1, 1] 
+    screen[X] ∈ [-1, 1]
     -1 for the left side of the screen and 1 for the right side
 */
 void	rendering(t_game *game)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_rotation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 18:47:28 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/13 18:47:53 by ccauderl         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:48:12 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 void	rotate_right(t_game *game)
 {

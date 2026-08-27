@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 18:48:16 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/13 18:48:17 by ccauderl         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:47:56 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 void	put_pixel(t_data_image *data, int x, int y, int color)
 {

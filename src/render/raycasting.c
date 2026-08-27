@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccauderl <ccauderl@learner.42.tech>        +#+  +:+       +#+        */
+/*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 17:06:21 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/14 17:44:09 by ccauderl         ###   ########.fr       */
+/*   Updated: 2026/08/20 16:48:57 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 /*
     Get the size of the projected wall from the ray length (wall_dist).
@@ -81,13 +81,13 @@ static void	calculate_step_and_sidedist(const t_player *plyr, t_raycast *ray)
 }
 
 /*
-    sideDist are the distances the ray has to travel 
-	from its start position to the first x-side and the first y-side. 
-    
-	deltaDist are the distances the ray has to travel to go 
+    sideDist are the distances the ray has to travel
+	from its start position to the first x-side and the first y-side.
+
+	deltaDist are the distances the ray has to travel to go
 	from a side to the next.
-    
-	perpWallDist is used to calculate the length of the ray 
+
+	perpWallDist is used to calculate the length of the ray
 	from the camera plane to the wall.
 */
 void	raycast(const t_game *game, const t_player *plyr, t_raycast *ray)
