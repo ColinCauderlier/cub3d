@@ -16,7 +16,7 @@ static void	map_to_int(t_game *game);
 static void	map_line_to_int(t_game *game, int i);
 static void	check_line(t_game *game, int i);
 
-void	init_map(t_game *game, char *map_name)
+void	init_map(t_game *game, const char *map_name)
 {
 	is_cub_file(map_name, game);
 	if (open_file(map_name, game) < 0)

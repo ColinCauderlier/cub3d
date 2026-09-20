@@ -6,7 +6,7 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 13:58:44 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/09/18 21:11:22 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/09/20 17:42:53 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,12 +195,14 @@ void				rotate_left(t_game *game);
 void				rotate_right(t_game *game);
 
 // parsing
-void				init_map(t_game *game, char *map_name);
+void				init_map(t_game *game, const char *map_name);
 int					open_file(const char *filename, t_game *game);
-void				map_copy(char *line, int fd, t_game *game, char *filename);
+void				map_copy(char *line, int fd, t_game *game,
+						const char *filename);
 int					count_lines(const char *filename);
 void				init_paths(const char *line, t_game *game, const char *id);
-void				init_colours(const char *line, t_game *game, char *id);
+void				init_colours(const char *line, t_game *game,
+						const char *id);
 void				copy_map_line(const char *line, t_game *game, int i);
 void				free_visited(t_fill *fill);
 void				skip_empty_lines(int fd, char **line);
