@@ -57,7 +57,6 @@ unsigned int	color_to_hex(const int color[4])
 {
 	unsigned int	result;
 
-	//printf("%i, %i, %i, %i\n", color[0], color[1], color[2], color[3]);
 	result = color[3];
 	result *= 256;
 	result += color[0];

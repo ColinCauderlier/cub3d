@@ -12,7 +12,7 @@
 
 #include "../../includes/cub.h"
 
-static void	store_colour(char **split, t_game *game, char *id)
+static void	store_colour(char **split, t_game *game, const char *id)
 {
 	if (ft_strcmp(id, "C") == 0)
 	{
@@ -45,7 +45,7 @@ static void	free_split_data(char **split)
 	free(split);
 }
 
-void	init_colours(char *line, t_game *game, char *ID)
+void	init_colours(const char *line, t_game *game, char *ID)
 {
 	char	**split;
 	char	*trimmed;

@@ -12,7 +12,7 @@
 
 #include "../../includes/cub.h"
 
-static int	count_spawn_line(char *line)
+static int	count_spawn_line(const char *line)
 {
 	int	j;
 	int	count;

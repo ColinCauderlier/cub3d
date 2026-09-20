@@ -12,7 +12,7 @@
 
 #include "../../includes/cub.h"
 
-int	count_lines(char *filename)
+int	count_lines(const char *filename)
 {
 	int		fd;
 	int		count;
@@ -32,7 +32,7 @@ int	count_lines(char *filename)
 	return (count);
 }
 
-void	copy_map_line(char *line, t_game *game, int i)
+void	copy_map_line(const char *line, t_game *game, int i)
 {
 	int	len;
 
@@ -55,7 +55,7 @@ void	free_visited(t_fill *fill)
 	free(fill->visited);
 }
 
-void	init_paths(char *line, t_game *game, char *ID)
+void	init_paths(const char *line, t_game *game, const char *ID)
 {
 	char	*trimmed;
 
@@ -73,7 +73,7 @@ void	init_paths(char *line, t_game *game, char *ID)
 	free(trimmed);
 }
 
-int	all_set(t_game *game)
+int	all_set(const t_game *game)
 {
 	if (!game->map.floor_set || !game->map.ceiling_set)
 		return (0);

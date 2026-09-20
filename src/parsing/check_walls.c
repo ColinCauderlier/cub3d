@@ -12,7 +12,7 @@
 
 #include "../../includes/cub.h"
 
-static int	is_void_at(t_fill *fill, int x, int y)
+static int	is_void_at(const t_fill *fill, int x, int y)
 {
 	if (y < 0 || y >= fill->height || !fill->game.map.map_plan[y] || x < 0
 		|| x >= (int)ft_strlen(fill->game.map.map_plan[y]))
