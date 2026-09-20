@@ -36,6 +36,7 @@ void	free_all(t_game *game)
 		return ;
 	if (game->map_fd >= 0)
 	{
+		drain_gnl(game->map_fd);
 		close(game->map_fd);
 		game->map_fd = -1;
 	}

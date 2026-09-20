@@ -56,3 +56,17 @@ void	free_texture_paths(t_game *game)
 		i++;
 	}
 }
+
+void	drain_gnl(int fd)
+{
+	char	*line;
+
+	if (fd < 0)
+		return ;
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+}

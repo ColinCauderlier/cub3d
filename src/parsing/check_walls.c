@@ -34,7 +34,7 @@ static void	flood_fill(t_fill *fill, int x, int y)
 	flood_fill(fill, x, y - 1);
 }
 
-static int	check_floor(t_fill *fill)
+static int	check_floor(const t_fill *fill)
 {
 	int	i;
 	int	j;

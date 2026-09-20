@@ -44,6 +44,7 @@ int	open_file(char *filename, t_game *game)
 	if (!line)
 		print_error(game, "Map data is missing after the configuration.");
 	map_copy(line, fd, game, filename);
+	drain_gnl(fd);
 	close(fd);
 	game->map_fd = -1;
 	return (0);
