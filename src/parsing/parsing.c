@@ -26,7 +26,7 @@ static void	read_config(int fd, char **line, t_game *game)
 	}
 }
 
-int	open_file(char *filename, t_game *game)
+int	open_file(const char *filename, t_game *game)
 {
 	int		fd;
 	char	*line;
@@ -50,7 +50,7 @@ int	open_file(char *filename, t_game *game)
 	return (0);
 }
 
-void	map_copy(char *line, int fd, t_game *game, char *filename)
+void	map_copy(char *line, int fd, t_game *game, const char *filename)
 {
 	int		i;
 	char	*next_line;
@@ -72,7 +72,7 @@ void	map_copy(char *line, int fd, t_game *game, char *filename)
 	game->map.map_plan[i] = NULL;
 }
 
-void	got_colours(char *line, t_game *game)
+void	got_colours(const char *line, t_game *game)
 {
 	if (ft_strstr(line, "F"))
 	{
@@ -88,7 +88,7 @@ void	got_colours(char *line, t_game *game)
 	}
 }
 
-void	got_paths(char *line, t_game *game)
+void	got_paths(const char *line, t_game *game)
 {
 	if (ft_strstr(line, "NO"))
 	{

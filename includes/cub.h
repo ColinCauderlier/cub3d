@@ -196,7 +196,7 @@ void				rotate_right(t_game *game);
 
 // parsing
 void				init_map(t_game *game, char *map_name);
-int					open_file(char *filename, t_game *game);
+int					open_file(const char *filename, t_game *game);
 void				map_copy(char *line, int fd, t_game *game, char *filename);
 int					count_lines(const char *filename);
 void				init_paths(const char *line, t_game *game, const char *id);
@@ -216,8 +216,8 @@ int					count_spawn(t_game *game);
 int					is_allowed(char c);
 void				is_cub_file(const char *mapname, t_game *game);
 int					is_wall(const t_game *game, int x, int y);
-void				got_paths(char *line, t_game *game);
-void				got_colours(char *line, t_game *game);
+void				got_paths(const char *line, t_game *game);
+void				got_colours(const char *line, t_game *game);
 
 // error management
 int					print_error(t_game *game, char *error_message);

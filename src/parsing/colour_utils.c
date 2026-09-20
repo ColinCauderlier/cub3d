@@ -45,7 +45,7 @@ static void	free_split_data(char **split)
 	free(split);
 }
 
-void	init_colours(const char *line, t_game *game, char *ID)
+void	init_colours(const char *line, t_game *game, const char *ID)
 {
 	char	**split;
 	char	*trimmed;
