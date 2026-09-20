@@ -6,7 +6,7 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 18:47:28 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/20 16:48:12 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/09/04 16:08:31 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	rotate_right(t_game *game)
 {
 	rotate(game->player.dir, NULL, to_rad(PLAYER_ROTATION));
 	rotate(game->player.dir, game->player.plan, to_rad(90));
+	game->player.plan[X] *= tanf(to_rad(FOV / 2));
+	game->player.plan[Y] *= tanf(to_rad(FOV / 2));
 	create_new_image(game);
 	rendering(game);
 }
@@ -24,6 +26,8 @@ void	rotate_left(t_game *game)
 {
 	rotate(game->player.dir, NULL, (to_rad(-1 * PLAYER_ROTATION)));
 	rotate(game->player.dir, game->player.plan, to_rad(90));
+	game->player.plan[X] *= tanf(to_rad(FOV / 2));
+	game->player.plan[Y] *= tanf(to_rad(FOV / 2));
 	create_new_image(game);
 	rendering(game);
 }

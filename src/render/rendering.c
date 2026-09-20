@@ -6,7 +6,7 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 17:50:29 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/20 16:49:04 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/08/27 16:44:59 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	get_texture_index(const t_raycast *ray)
 
 static void	init_column(t_game *game, const t_raycast *ray)
 {
-	double			wall_x;
+	double	wall_x;
 
 	if (ray->side == X)
 		wall_x = game->player.pos[Y] + ray->wall_dist * ray->ray_dir[Y];
@@ -46,15 +46,17 @@ static void	init_column(t_game *game, const t_raycast *ray)
 		game->tex.tex_x = game->tex.current_tex.width - game->tex.tex_x - 1;
 }
 
-static void	draw_column(t_game *game, const t_raycast *ray, t_tex *tex, int column)
+static void	draw_column(t_game *game, const t_raycast *ray, t_tex *tex,
+		int column)
 {
-	int				column_pixel;
-	int				color;
+	int	column_pixel;
+	int	color;
 
 	column_pixel = 0;
 	while (column_pixel < ray->draw_wall[START])
 	{
-		put_pixel(&game->data_img, column, column_pixel, BLUE);
+		put_pixel(&game->data_img, column, column_pixel,
+			color_to_hex(game->map.ceiling_colour));
 		column_pixel++;
 	}
 	while (column_pixel < ray->draw_wall[END])
@@ -67,14 +69,15 @@ static void	draw_column(t_game *game, const t_raycast *ray, t_tex *tex, int colu
 	}
 	while (column_pixel < SIZE_WIN_Y)
 	{
-		put_pixel(&game->data_img, column, column_pixel, DARKGREEN);
+		put_pixel(&game->data_img, column, column_pixel,
+			color_to_hex(game->map.floor_colour));
 		column_pixel++;
 	}
 }
 
 /*
-    screen[X] ∈ [-1, 1]
-    -1 for the left side of the screen and 1 for the right side
+	screen[X] ∈ [-1, 1]
+	-1 for the left side of the screen and 1 for the right side
 */
 void	rendering(t_game *game)
 {

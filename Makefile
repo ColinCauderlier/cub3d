@@ -6,7 +6,7 @@
 #    By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/08/08 14:23:37 by ccauderl          #+#    #+#              #
-#    Updated: 2026/08/20 18:00:10 by lucinguy         ###   ########.fr        #
+#    Updated: 2026/09/16 21:03:34 by lucinguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,16 +22,26 @@ SRCS_DIR	:= src
 OBJS_DIR	:= objs/cub3D
 LIBFT_LIB	:= $(LIBFT_DIR)/libft.a
 
+.SILENT:
+
 SRCS		:= main.c \
 			init.c \
 			utils.c \
 			movement/player_movement.c \
 			movement/player_rotation.c \
 			parsing/parsing.c \
+			parsing/parsing_utils.c \
+			parsing/colour_utils.c \
+			cleanup.c \
+			parsing/check_map.c \
+			parsing/check_spawn.c \
+			parsing/check_map_utils.c \
 			render/textures.c \
 			render/raycasting.c \
 			render/rendering.c \
-			render/put_pixel.c
+			render/put_pixel.c \
+			error_management.c \
+			parsing/check_walls.c
 
 SRCS_FILES	:= $(addprefix $(SRCS_DIR)/, $(SRCS))
 OBJS		:= $(SRCS_FILES:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)

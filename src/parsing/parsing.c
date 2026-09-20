@@ -6,100 +6,111 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/19 14:34:02 by lucinguy          #+#    #+#             */
-/*   Updated: 2026/08/24 22:54:58 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/09/18 21:11:22 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-char	**open_file(char *filename, t_game game)
+static void	read_config(int fd, char **line, t_game *game)
+{
+	while (*line)
+	{
+		if (all_set(game))
+			break ;
+		got_paths(*line, game);
+		got_colours(*line, game);
+		free(*line);
+		*line = get_next_line(fd);
+		game->parse_line = *line;
+	}
+}
+
+int	open_file(char *filename, t_game *game)
 {
 	int		fd;
 	char	*line;
 
+	is_cub_file(filename, game);
 	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		print_error(game, "Cannot open map.");
+	game->map_fd = fd;
 	line = get_next_line(fd);
-	while (line)
-	{
-		if (line == "\n")
-			continue ;
-		got_paths(line, game);
-		got_colours(line, game);
-		line = get_next_line(fd);
-		if (all_set(game) == 1)
-			break ;
-	}
-	while (line && line == "\n") // on saute les retours a la ligne
-		line = get_next_line(fd);
-	if (line == NULL) // pas de map ou pas tout set up a la fin du fichier
-		perror("Misconfiguration found in the map");
-	map_copy(fd, game);
+	game->parse_line = line;
+	read_config(fd, &line, game);
+	skip_empty_lines(fd, &line);
+	game->parse_line = line;
+	if (!line)
+		print_error(game, "Map data is missing after the configuration.");
+	map_copy(line, fd, game, filename);
+	close(fd);
+	game->map_fd = -1;
+	return (0);
 }
 
-void	map_copy(int fd, t_game game)
+void	map_copy(char *line, int fd, t_game *game, char *filename)
 {
-	char	*line;
 	int		i;
-	int		len;
+	char	*next_line;
 
-	i = 1;
-	len = 0;
-	line = get_next_line(fd);
-	while (line)
+	i = 0;
+	game->map.counted_lines = count_lines(filename);
+	game->map.map_plan = ft_calloc(game->map.counted_lines + 1, sizeof(char *));
+	if (!game->map.map_plan)
+		print_error(game, "Map malloc has failed.");
+	while (line && i < game->map.counted_lines && line[0] != '\n')
 	{
-		len = ft_strlen(line);
-		game.map.map_plan = malloc(sizeof(char *) * i);
-		if (!game.map.map_plan)
-			perror("Map malloc has failed");
-		game.map.map_plan[i - 1] = malloc(sizeof(char) * ft_strlen(line));
-		if (!game.map.map_plan[i - 1])
-			perror("Map malloc has failed");
-		ft_strlcpy(game.map.map_plan[i - 1], line, len - 1);
+		copy_map_line(line, game, i);
 		i++;
-		line = get_next_line(fd);
+		next_line = get_next_line(fd);
+		free(line);
+		line = next_line;
+		game->parse_line = line;
 	}
+	game->map.map_plan[i] = NULL;
 }
 
-void	got_colours(char *line, t_game game)
+void	got_colours(char *line, t_game *game)
 {
 	if (ft_strstr(line, "F"))
 	{
-		if (game.map.floor_colour[0])
-			perror("Misconfiguration found in the map");
+		if (game->map.floor_colour[0])
+			print_error(game, "Duplicate floor colour definition.");
 		init_colours(line, game, "F");
 	}
 	else if (ft_strstr(line, "C"))
 	{
-		if (game.map.ceiling_colour[0])
-			perror("Misconfiguration found in the map");
+		if (game->map.ceiling_colour[0])
+			print_error(game, "Duplicate ceiling colour definition.");
 		init_colours(line, game, "C");
 	}
 }
 
-void	got_paths(char *line, t_game game)
+void	got_paths(char *line, t_game *game)
 {
 	if (ft_strstr(line, "NO"))
 	{
-		if (game.map.NO_path)
-			perror("Misconfiguration found in the map");
+		if (game->tex.tex_names[0])
+			print_error(game, "Duplicate NO texture definition.");
 		init_paths(line, game, "NO");
 	}
 	else if (ft_strstr(line, "SO"))
 	{
-		if (game.map.SO_path)
-			perror("Misconfiguration found in the map");
+		if (game->tex.tex_names[1])
+			print_error(game, "Duplicate SO texture definition.");
 		init_paths(line, game, "SO");
 	}
 	else if (ft_strstr(line, "WE"))
 	{
-		if (game.map.WE_path)
-			perror("Misconfiguration found in the map");
+		if (game->tex.tex_names[3])
+			print_error(game, "Duplicate WE texture definition.");
 		init_paths(line, game, "WE");
 	}
 	else if (ft_strstr(line, "EA"))
 	{
-		if (game.map.EA_path)
-			perror("Misconfiguration found in the map");
+		if (game->tex.tex_names[2])
+			print_error(game, "Duplicate EA texture definition.");
 		init_paths(line, game, "EA");
 	}
 }

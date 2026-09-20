@@ -6,7 +6,7 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:21:39 by lucinguy          #+#    #+#             */
-/*   Updated: 2025/10/29 14:32:12 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/08/27 15:57:07 by ccauderl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
+	size_t				i;
 	const unsigned char	*p1;
 	const unsigned char	*p2;	
 

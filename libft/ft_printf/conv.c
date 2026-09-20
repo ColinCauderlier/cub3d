@@ -6,7 +6,7 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:27:02 by lucinguy          #+#    #+#             */
-/*   Updated: 2026/03/03 14:10:51 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/08/27 15:58:10 by ccauderl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_putnbr_t_fd(long n, int fd)
 int	ft_putnbr_base_x(unsigned long n, int uppercase, int fd)
 {
 	const char	*base;
-	int		count;
+	int			count;
 
 	count = 0;
 	if (uppercase)

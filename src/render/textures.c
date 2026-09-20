@@ -22,7 +22,9 @@ static void	destroy_previous_images(t_game *game, int i)
 	j = 0;
 	while (j < i)
 	{
-		mlx_destroy_image(game->mlx, game->tex.tex_img[j].img);
+		if (game->mlx && game->tex.tex_img[j].img)
+			mlx_destroy_image(game->mlx, game->tex.tex_img[j].img);
+		game->tex.tex_img[j].img = NULL;
 		j++;
 	}
 }
@@ -67,7 +69,9 @@ void	close_textures(t_game *game)
 	img_index = 0;
 	while (img_index < 4)
 	{
-		mlx_destroy_image(game->mlx, game->tex.tex_img[img_index].img);
+		if (game->mlx && game->tex.tex_img[img_index].img)
+			mlx_destroy_image(game->mlx, game->tex.tex_img[img_index].img);
+		game->tex.tex_img[img_index].img = NULL;
 		img_index++;
 	}
 }

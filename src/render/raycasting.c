@@ -6,14 +6,14 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 17:06:21 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/20 16:48:57 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:00:21 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
 /*
-    Get the size of the projected wall from the ray length (wall_dist).
+	Get the size of the projected wall from the ray length (wall_dist).
 */
 static void	get_wall_size(t_raycast *ray)
 {
@@ -30,7 +30,7 @@ static void	get_wall_size(t_raycast *ray)
 		ray->draw_wall[END] = SIZE_WIN_Y - 1;
 }
 
-//DDA: Digital Differential Analysis algorithm
+// DDA: Digital Differential Analysis algorithm
 static void	dda(const t_game *game, t_raycast *ray)
 {
 	while (ray->hit == FALSE)
@@ -47,7 +47,7 @@ static void	dda(const t_game *game, t_raycast *ray)
 			ray->map[Y] += ray->step[Y];
 			ray->side = Y;
 		}
-		if (game->map[ray->map[Y]][ray->map[X]] == 1)
+		if (is_wall(game, ray->map[X], ray->map[Y]))
 			ray->hit = TRUE;
 	}
 }
@@ -81,7 +81,7 @@ static void	calculate_step_and_sidedist(const t_player *plyr, t_raycast *ray)
 }
 
 /*
-    sideDist are the distances the ray has to travel
+	sideDist are the distances the ray has to travel
 	from its start position to the first x-side and the first y-side.
 
 	deltaDist are the distances the ray has to travel to go

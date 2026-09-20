@@ -6,7 +6,7 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/08 13:58:44 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/24 20:36:13 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/09/18 21:11:22 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 
 //-------LIBRARIES-------//
 
+# include "../libft/gnl/get_next_line_bonus.h"
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
 # include <errno.h>
@@ -126,19 +127,21 @@ typedef struct s_raycasting
 typedef struct s_map
 {
 	int				spawn_number;
-	char			*NO_path;
-	char			*SO_path;
-	char			*WE_path;
-	char			*EA_path;
-	int				floor_colour[3];
-	int				ceiling_colour[3];
+	int				floor_set;
+	int				ceiling_set;
+	int				floor_colour[4];
+	int				ceiling_colour[4];
+	int				counted_lines;
 	char			**map_plan;
+	int				**int_map;
 }					t_map;
 
 typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	int				map_fd;
+	char			*parse_line;
 	t_data_image	data_img;
 	t_player		player;
 	t_raycast		ray;
@@ -146,10 +149,18 @@ typedef struct s_game
 	t_map			map;
 }					t_game;
 
+typedef struct s_fill
+{
+	t_game			game;
+	char			**visited;
+	int				width;
+	int				height;
+}					t_fill;
+
 //-------FUNCTIONS-------//
 
 // init.c
-void				init(t_game *game);
+void				init(t_game *game, char *mapname);
 
 // textures.c
 int					open_textures(t_game *game, t_tex *tex);
@@ -159,6 +170,7 @@ void				close_textures(t_game *game);
 void				rotate(double src[2], double dest[2], double alpha);
 double				to_deg(double alpha);
 double				to_rad(double alpha);
+unsigned int		color_to_hex(const int color[4]);
 
 // rendering.c
 void				rendering(t_game *game);
@@ -182,4 +194,35 @@ void				move_right(t_game *game);
 void				rotate_left(t_game *game);
 void				rotate_right(t_game *game);
 
+// parsing
+void				init_map(t_game *game, char *map_name);
+int					open_file(char *filename, t_game *game);
+void				map_copy(char *line, int fd, t_game *game, char *filename);
+int					count_lines(char *filename);
+void				init_paths(char *line, t_game *game, char *id);
+void				init_colours(char *line, t_game *game, char *id);
+void				copy_map_line(char *line, t_game *game, int i);
+void				free_visited(t_fill *fill);
+void				skip_empty_lines(int fd, char **line);
+void				init_position(t_game *game, int x, int y, char dir);
+size_t				strlcpy_map(char *dst, const char *src, size_t dsize);
+
+// checking
+void				check_walls(t_game game);
+void				check_colour(t_game *game);
+int					all_set(t_game *game);
+void				map_check(t_game *game);
+int					count_spawn(t_game *game);
+int					is_allowed(char c);
+void				is_cub_file(const char *mapname, t_game *game);
+int					is_wall(const t_game *game, int x, int y);
+void				got_paths(char *line, t_game *game);
+void				got_colours(char *line, t_game *game);
+
+// error management
+int					print_error(t_game *game, char *error_message);
+void				free_all(t_game *game);
+void				free_map_plan(t_game *game);
+void				free_int_map(t_game *game);
+void				free_texture_paths(t_game *game);
 #endif

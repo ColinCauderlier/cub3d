@@ -6,7 +6,7 @@
 /*   By: lucinguy <lucinguy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 18:40:21 by ccauderl          #+#    #+#             */
-/*   Updated: 2026/08/20 16:48:09 by lucinguy         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:00:21 by lucinguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	move_forward(t_game *game)
 
 	next_x_pos = game->player.pos[X] + PLAYER_SPEED * game->player.dir[X];
 	next_y_pos = game->player.pos[Y] + PLAYER_SPEED * game->player.dir[Y];
-	if (game->map[(int)floor(next_y_pos)][(int)floor(next_x_pos)] != 1)
+	if (!is_wall(game, (int)floor(next_x_pos), (int)floor(next_y_pos)))
 	{
 		game->player.pos[X] = next_x_pos;
 		game->player.pos[Y] = next_y_pos;
@@ -44,7 +44,7 @@ void	move_backward(t_game *game)
 
 	next_x_pos = game->player.pos[X] - PLAYER_SPEED * game->player.dir[X];
 	next_y_pos = game->player.pos[Y] - PLAYER_SPEED * game->player.dir[Y];
-	if (game->map[(int)floor(next_y_pos)][(int)floor(next_x_pos)] != 1)
+	if (!is_wall(game, (int)floor(next_x_pos), (int)floor(next_y_pos)))
 	{
 		game->player.pos[X] = next_x_pos;
 		game->player.pos[Y] = next_y_pos;
@@ -60,7 +60,7 @@ void	move_left(t_game *game)
 
 	next_x_pos = game->player.pos[X] - PLAYER_SPEED * game->player.plan[X];
 	next_y_pos = game->player.pos[Y] - PLAYER_SPEED * game->player.plan[Y];
-	if (game->map[(int)floor(next_y_pos)][(int)floor(next_x_pos)] != 1)
+	if (!is_wall(game, (int)floor(next_x_pos), (int)floor(next_y_pos)))
 	{
 		game->player.pos[X] = next_x_pos;
 		game->player.pos[Y] = next_y_pos;
@@ -76,7 +76,7 @@ void	move_right(t_game *game)
 
 	next_x_pos = game->player.pos[X] + PLAYER_SPEED * game->player.plan[X];
 	next_y_pos = game->player.pos[Y] + PLAYER_SPEED * game->player.plan[Y];
-	if (game->map[(int)floor(next_y_pos)][(int)floor(next_x_pos)] != 1)
+	if (!is_wall(game, (int)floor(next_x_pos), (int)floor(next_y_pos)))
 	{
 		game->player.pos[X] = next_x_pos;
 		game->player.pos[Y] = next_y_pos;
